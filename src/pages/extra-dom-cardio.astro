@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Dom cardio">
+    <main>
+
+    </main>
+</Layout>
+<script>
+    //4:35
+    // Make a div
+    const div = document.createElement('div');
+    // add a class of wrapper to it
+    div.classList.add('wrapper');
+    // put it into the main tag
+    const main = document.querySelector('main');
+    main.insertAdjacentElement('afterbegin', div);
+    // make an unordered list
+    const unorderedList = document.createElement('ul');
+    // add three list items with the words "one, two, three" in them
+    const listItems = `
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    `;
+    unorderedList.insertAdjacentHTML('afterbegin', listItems);
+    // put that list into the above wrapper
+    div.insertAdjacentElement('afterbegin', unorderedList);
+
+    // create an image
+    const image = document.createElement('img');
+    // set the source to an image
+    image.src = 'https://images.unsplash.com/photo-1539146789170-c49ca355f9f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80';
+    // set the width to 250
+    image.width = '250';
+    // add a class of cute
+    image.classList.add('awesome');
+    // add an alt of Cute Puppy
+    image.alt = 'Awesome Niagara';
+    // Append that image to the wrapper
+    div.insertAdjacentElement('afterbegin', image);
+    // with HTML string, make a div, with two paragraphs inside of it
+    const anotherDiv = `
+        <div>
+            <p></p>
+            <p></p>
+        </div>
+    `;
+    // put this div before the unordered list from above
+    unorderedList.insertAdjacentHTML('beforebegin', anotherDiv);
+    // add a class to the second paragraph called warning
+    const secondDiv = document.querySelector('.wrapper div');
+
+    secondDiv.lastElementChild.classList.add('warning');
+    // remove the first paragraph
+    secondDiv.removeChild(secondDiv.querySelector('p'));
+    // create a function called generatePlayerCard that takes in three arguments: name, age, and height
+    function generatePlayerCard(name, age, height) {
+        const ageDogInYears = age * height;
+        return `
+            <div class="playerCard">
+                <h2>${name} — ${age}</h2>
+                <p> They are ${height} and ${age} years old. In Dog years this person would be
+                    ${ageDogInYears}. That would be a tall dog!
+                </p>
+                <button>Delete ❌</button>
+            </div>    
+        `
+    }
+    // have that function return html that looks like this:
+    // <div class="playerCard">
+    //   <h2>NAME — AGE</h2>
+    //   <p>They are HEIGHT and AGE years old. In Dog years this person would be AGEINDOGYEARS. That would be a tall dog!</p>
+    // </div>
+
+    // make a new div with a class of cards
+    const cards = document.createElement('cards');
+
+    // make 4 player cards using generatePlayerCard
+    cards.insertAdjacentHTML('afterbegin', generatePlayerCard('juan', 30, 1.68));
+    cards.insertAdjacentHTML('afterbegin', generatePlayerCard('diana', 32, 1.58));
+    cards.insertAdjacentHTML('afterbegin', generatePlayerCard('eliza', 28, 1.62));
+    cards.insertAdjacentHTML('afterbegin', generatePlayerCard('pedro', 46, 1.78));
+    // append those cards to the div
+    const allCards = document.querySelectorAll('.playerCard');
+    allCards.forEach(card => cards.insertAdjacentElement('afterbegin', card));
+    // put the div into the DOM just before the wrapper element
+    main.querySelector('.wrapper').insertAdjacentElement('beforebegin', cards);
+    // Bonus, put a delete Button on each card so when you click it, the whole card is removed    
+    // select all the buttons!
+    const deleteBtns = document.querySelectorAll('.playerCard button');
+    // make out delete function
+    function deleteBtn(e) {
+        const card = e.target.parentElement;
+        cards.removeChild(card);
+    }
+    // loop over them and attach a listener
+    deleteBtns.forEach(btn => btn.addEventListener('click', deleteBtn));
+</script>
+
+<style>
+
+</style>
