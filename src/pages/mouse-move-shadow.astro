@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Local storage and event delegation">
+    <main>
+        <div class="hero">
+            <h1 contenteditable>🔥WOAH!</h1>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --x-shadow: 10px;
+        --y-shadow: -20px;
+    }
+
+    html {
+        color: black;
+        font-family: sans-serif;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+    }
+
+    h1 {
+        text-shadow: var(--x-shadow) var(--y-shadow) 0 rgba(0, 0, 0, 1),
+            110px -20px 0 rgb(63, 226, 82);
+        font-size: 100px;
+    }
+</style>
+<script>
+    const hero = document.querySelector('.hero');
+    const text = hero.querySelector('h1');
+    //walk: how far the text shadow will go
+    const walk = 200;
+
+    function moveShadow(e) {
+        const { offsetWidth: width, offsetHeight: height } = hero;
+        let { offsetX: x, offsetY: y } = e;
+
+        // we normalize the coordinates for elements that are inside the place we are listening to 
+        //in this case inside the hero element
+        if (this !== e.target) {
+            console.log({ ol: e.target.offsetLeft, ot: e.target.offsetTop })
+            x = x + e.target.offsetLeft;
+            y = y + e.target.offsetTop;
+        }
+        //console.log({ x, y });
+        //maths to get our farthest coordinates according to the walk
+        const xWalk = Math.round(x / width * walk - (walk / 2));
+        const yWalk = Math.round(y / height * walk - (walk / 2));
+
+        text.style.textShadow = `
+        ${xWalk}px ${yWalk}px 0 rgba(215, 210, 0, 1),
+        ${xWalk}px ${-1 * yWalk}px 0 rgba(215, 0, 210, 1),
+        ${-1 * yWalk}px ${-1 * xWalk}px 0 rgba(10, 20, 100, 1),
+        ${-1 * yWalk}px ${xWalk}px 0 rgba(43, 125, 140, 1)
+        `
+    }
+
+    hero.addEventListener('mousemove', moveShadow);
+
+</script>
