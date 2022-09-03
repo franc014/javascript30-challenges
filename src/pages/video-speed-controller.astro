@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import snapSound from "../sounds/snap.mp3";
+---
+
+<Layout title="Webcam fun">
+  <div class="wrapper">
+    <video
+      class="flex"
+      width="765"
+      height="430"
+      src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+      loop
+      controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #4c4c4c url("https://unsplash.it/1500/900?image=1021");
+    background-size: cover;
+    font-family: sans-serif;
+  }
+
+  .wrapper {
+    width: 850px;
+    display: flex;
+  }
+
+  video {
+    box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .speed {
+    background: #efefef;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    margin: 10px;
+    border-radius: 50px;
+    box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .speed-bar {
+    width: 100%;
+    background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    color: white;
+    height: 28.3%;
+  }
+</style>
+
+<script>
+  const speed = document.querySelector(".speed");
+  const speedBar = document.querySelector(".speed-bar");
+  const video = document.querySelector(".flex");
+  const barHight = speed.getBoundingClientRect().height;
+  let initialPosition = 0;
+  let finalPosition = initialPosition;
+
+  let isDown = false;
+
+  function setSpped(hight) {
+    return (hight * 16) / barHight;
+  }
+
+  //on mouse move: speedBar
+  function handleMouseDown(e) {
+    isDown = true;
+    initialPosition = e.y - e.target.offsetTop;
+    console.log({ initialPosition });
+    speedBar.style.setProperty("height", `${initialPosition}px`);
+  }
+
+  function handleMouseMove(e) {
+    if (isDown) {
+      finalPosition = initialPosition + e.y - e.target.offsetTop;
+
+      if (finalPosition <= barHight) {
+        const speed = Math.floor(setSpped(finalPosition));
+        speedBar.style.setProperty("height", `${finalPosition}px`);
+        speedBar.textContent = `${speed}x`;
+        video.playbackRate = speed;
+        //console.log({ finalPosition });
+        speedBar.style.setProperty("height", `${finalPosition}px`);
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
+  }
+
+  function handleMouseUp(e) {
+    isDown = false;
+    finalPosition = initialPosition + e.y - e.target.offsetTop;
+    speedBar.style.setProperty("height", `${finalPosition}px`);
+  }
+  function handleMouseLeave(e) {
+    if (isDown) {
+      isDown = false;
+      speedBar.style.setProperty("height", `${finalPosition}px`);
+    }
+  }
+
+  speed.addEventListener("mousedown", handleMouseDown);
+  speed.addEventListener("mousemove", handleMouseMove);
+</script>
