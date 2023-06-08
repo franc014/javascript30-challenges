@@ -1,0 +1,150 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Javascript 30 Challenges">
+    <main>
+        <h1>
+            Javascript 30 Challenges by Wes Bos, followed and implemented by me!
+            😄
+        </h1>
+        <h2>Index</h2>
+        <div class="index">
+            <ul>
+                <li>
+                    <a href="/mouse-move-shadow"
+                        >CSS Text Shadow Mouse Move Effect</a
+                    >
+                </li>
+                <li>
+                    <a href="/sort-without-articles"
+                        >Sorting Band Names Without Articles</a
+                    >
+                </li>
+                <li>
+                    <a href="/tally-times-reduce"
+                        >Tally String Times With Reduce</a
+                    >
+                </li>
+                <li>
+                    <a href="/webcam-fun">Unreal Web Cam Fun</a>
+                </li>
+                <li>
+                    <a href="/native-speech-recognition"
+                        >Native Speech Recognition</a
+                    >
+                </li>
+                <li>
+                    <a href="/speedometer-and-compass"
+                        >Geolocation Based Speedometer and Compass</a
+                    >
+                </li>
+                <li>
+                    <a href="/follow-along-link">Follow Along Links</a>
+                </li>
+                <li>
+                    <a href="/speech-syntesis">Speech Synthesis</a>
+                </li>
+                <li>
+                    <a href="/sticky-nav">Sticky Nav</a>
+                </li>
+                <li>
+                    <a href="/stripe-dropdown">Stripe Follow Along Dropdown</a>
+                </li>
+                <li>
+                    <a href="/click-and-drag-to-scroll"
+                        >Click and Drag To Scroll</a
+                    >
+                </li>
+                <li>
+                    <a href="/video-speed-controller"
+                        >Video Speed Controller UI</a
+                    >
+                </li>
+                <li>
+                    <a href="/countdown-clock">Countdown Clock</a>
+                </li>
+                <li>
+                    <a href="/whack-a-mole">Whack a Mole Game</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li><a href="/drumkit">Js Drum kit</a></li>
+                <li><a href="/clock">CSS + JS Clock</a></li>
+                <li><a href="/css-vars-and-js">CSS vars && Js</a></li>
+                <li><a href="/array-cardio-day-1">Array Cardio Day 1</a></li>
+                <li>
+                    <a href="/flex-panel-gallery">Flex Panels Image Gallery</a>
+                </li>
+                <li><a href="/ajax-type-ahead">Ajax Type Head</a></li>
+                <li><a href="/array-cardio-day-2">Array Cardio Day 2</a></li>
+                <li><a href="/fun-with-canvas">Fun width HTML Canvas</a></li>
+
+                <li>
+                    <a href="/hold-shift-to-check-multiple"
+                        >Hold Shift to Check Multiple Checkboxes</a
+                    >
+                </li>
+                <li>
+                    <a href="/key-sequence-detection"
+                        >Key Sequence Detection (Konami Code)</a
+                    >
+                </li>
+
+                <li><a href="/slide-in-on-scroll">Slide in on Scroll</a></li>
+                <li>
+                    <a href="/ref-vs-copy"
+                        >Object and Arrays - Reference vs Copy</a
+                    >
+                </li>
+                <li>
+                    <a href="/local-storage-event-delegation"
+                        >Local Storage and Event Delegation</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    main {
+        max-width: 80%;
+        margin-inline: auto;
+        margin-block: 4rem;
+        padding: 2rem;
+        background-color: var(--color-bg);
+        border-radius: 1rem;
+    }
+
+    h1 {
+        color: hsl(190deg, 10%, 20%);
+    }
+    h2 {
+        color: hsl(190deg, 10%, 40%);
+    }
+    ul {
+        list-style-type: none;
+    }
+    ul li {
+        margin-top: 0.5rem;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: rgb(114, 5, 120);
+        font-weight: 400;
+        font-size: 0.8rem;
+    }
+
+    ul li a:hover {
+        text-decoration: none;
+        color: rgba(114, 5, 120, 0.6);
+    }
+
+    .index {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>

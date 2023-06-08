@@ -208,28 +208,13 @@ import Layout from "../layouts/Layout.astro";
 <script>
     const allImages = document.querySelectorAll('.slide-in');
 
-    function debounce(func, wait = 20, immediate = true) {
-        var timeout;
-        return function () {
-            var context = this, args = arguments;
-            var later = function () {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    }
-
 
     function createObserver() {
 
         const intersectionOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.4
+            threshold: 0.7
         };
 
         let observer = new IntersectionObserver(showImage, intersectionOptions);
@@ -256,9 +241,5 @@ import Layout from "../layouts/Layout.astro";
             target.classList.remove('active');
         }
     }
-
-
-
-
     //window.addEventListener('scroll', showImages);
 </script>
